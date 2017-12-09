@@ -16,7 +16,7 @@ gpio.trig(echo, 'both', function(level, time)
 end)
 
 --Start new measurement requires a high pulse (10us)
---qpio.serout cause strange error but this works
+--gpio.serout cause strange error but this works
 tmr.create():alarm(100, tmr.ALARM_AUTO, function()
   gpio.write(trig, 0)
   gpio.write(trig, 1)
