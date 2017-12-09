@@ -1,2 +1,2 @@
 ## Gauge example
-![picture](img/gauge.jpg)
+![picture](../img/gauge.jpg)
