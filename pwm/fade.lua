@@ -27,7 +27,7 @@ function fade()
   elseif(nb-cb > v) then pwm.setduty(8, cb+v)
   else pwm.setduty(8, nb) end
               
-  if(cr~=nr or cg~=ng or cb~=nb ) then node.task.post(fade) end
+  node.task.post(fade)
 end
 
 --test fade
@@ -35,4 +35,5 @@ r = node.random(255)
 g = node.random(255)
 b = node.random(255)
 v = 1 -- fade speed
+
 fade()
