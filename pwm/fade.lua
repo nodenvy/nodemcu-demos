@@ -14,6 +14,8 @@ function fade()
   nr = 1023 - r*1023/255
   ng = 1023 - g*1023/255
   nb = 1023 - b*1023/255
+  
+  v = v or 1023
     
   if(cr-nr > v) then pwm.setduty(5, cr-v)
   elseif(nr-cr > v) then pwm.setduty(5, cr+v)
@@ -26,14 +28,14 @@ function fade()
   if(cb-nb > v) then pwm.setduty(8, cb-v)
   elseif(nb-cb > v) then pwm.setduty(8, cb+v)
   else pwm.setduty(8, nb) end
-              
-  node.task.post(fade)
 end
 
 --test fade
-r = node.random(255)
-g = node.random(255)
-b = node.random(255)
-v = 1 -- fade speed
+tmr.create():alarm(5000, tmr.ALARM_AUTO, function()
+  r = node.random(255)
+  g = node.random(255)
+  b = node.random(255)
+  v = node.random(100) -- fade speed
+end)
 
-fade()
+tmr.create():alarm(10, tmr.ALARM_AUTO, fade)
